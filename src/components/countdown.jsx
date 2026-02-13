@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
-function calculateTimeLeft(targetDate) {
-  const difference = targetDate - new Date()
-  let timeLeft = {}
+function calculateTimeTogether(startDate) {
+  const difference = new Date() - startDate
+  let timeTogether = {}
 
   if (difference > 0) {
-    timeLeft = {
+    timeTogether = {
       days: Math.floor(difference / (1000 * 60 * 60 * 24)),
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
       minutes: Math.floor((difference / 1000 / 60) % 60),
@@ -17,24 +17,20 @@ function calculateTimeLeft(targetDate) {
     }
   }
 
-  return timeLeft
+  return timeTogether
 }
 
 export default function Countdown({ targetDate, onCountdownEnd }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate))
+  const [timeTogether, setTimeTogether] = useState(calculateTimeTogether(targetDate))
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const updated = calculateTimeLeft(targetDate)
-
-      setTimeLeft(updated)
-      if (!updated || Object.keys(updated).length <= 0) {
-        onCountdownEnd()
-      }
+      const updated = calculateTimeTogether(targetDate)
+      setTimeTogether(updated)
     }, 1000)
 
     return () => clearTimeout(timer)
-  }, [timeLeft, targetDate])
+  }, [timeTogether, targetDate])
 
   const icons = [
     <Heart key="heart" className="text-pink-500 fill-pink-200" />,
@@ -56,12 +52,12 @@ export default function Countdown({ targetDate, onCountdownEnd }) {
           ease: "easeInOut",
         }}
       >
-        Your Special Day is Almost Here💕
+        We've Been Together For💕
       </motion.h1>
 
       <div className="flex flex-wrap justify-center gap-4 mb-8">
-        {Object.keys(timeLeft).length > 0 ? (
-          Object.entries(timeLeft).map(([unit, value], index) => (
+        {Object.keys(timeTogether).length > 0 && (
+          Object.entries(timeTogether).map(([unit, value], index) => (
             <motion.div
               key={unit}
               className="bg-white rounded-3xl shadow-lg p-4 w-28 h-28 flex flex-col items-center justify-center border-2 border-pink-200"
@@ -75,8 +71,6 @@ export default function Countdown({ targetDate, onCountdownEnd }) {
               <div className="mt-1">{icons[index % icons.length]}</div>
             </motion.div>
           ))
-        ) : (
-          <p className="text-2xl text-pink-600 font-bold">It's time!</p>
         )}
       </div>
 
@@ -87,7 +81,7 @@ export default function Countdown({ targetDate, onCountdownEnd }) {
         transition={{ delay: 0.5 }}
       >
         <p className="text-lg text-purple-700 mb-4">
-          Just a little more... A small gift for my favorite person❤️
+          Every moment with you is a beautiful memory❤️
         </p>
 
         <div className="flex justify-center space-x-2">

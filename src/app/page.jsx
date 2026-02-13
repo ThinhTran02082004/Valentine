@@ -13,12 +13,10 @@ export default function Home() {
   const [isBirthday, setIsBirthday] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [bubbles, setBubbles] = useState([])
-  const [showForYouBtn, setShowForYouBtn] = useState(false)
-  const birthdayDate = new Date("April 28, 2025") // Change this date accordingly
+  const [showForYouBtn, setShowForYouBtn] = useState(true)
+  const relationshipStartDate = new Date("2023-08-25")
   const audioRef = useRef(null)
 
-  // For testing
-  // const birthdayDate = new Date("2025-04-23T22:03:00+05:30")
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,7 +72,7 @@ export default function Home() {
             {isBirthday ? (
               <BirthdayCelebration key="celebration" />
             ) : (
-              <Countdown key="countdown" targetDate={birthdayDate} onCountdownEnd={() => setShowForYouBtn(true)} />
+              <Countdown key="countdown" targetDate={relationshipStartDate} onCountdownEnd={() => setShowForYouBtn(true)} />
             )}
           </AnimatePresence>
         </motion.div>
@@ -106,10 +104,8 @@ export default function Home() {
         </motion.button>
       </motion.div>}
 
-      {/* You can change the background song if you want */}
-      <audio ref={audioRef} src="/birthday.mp3" preload="auto" loop />
+      <audio ref={audioRef} src="/nhac.mp3" preload="auto" loop />
 
-      {/* Decorative elements */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         {bubbles.map((bubble, i) => (
           <motion.div

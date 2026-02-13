@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Heart, Sparkles, Gift, Cake } from "lucide-react"
-
 export default function BirthdayCelebration() {
   const [isCardOpen, setIsCardOpen] = useState(false)
 
@@ -20,13 +19,13 @@ export default function BirthdayCelebration() {
         }}
         className="relative mb-2"
       >
-        <h1 className="text-4xl sm:text-5xl font-bold text-center text-pink-600 mb-2">Happy Birthday!</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold text-center text-pink-600 mb-2">Happy Valentine's Day</h1>
         <div className="flex justify-center gap-3">
           <Cake className="w-8 h-8 text-pink-500" />
           <Sparkles className="w-8 h-8 text-yellow-500" />
           <Heart className="w-8 h-8 text-pink-500" />
-        </div>
-        <h3 className="text-2xl sm:text-3xl font-bold text-center text-pink-600 mt-2">To My Cutiepie</h3>
+        </div><div className="flex flex-row items-end
+ justify-center gap-2" ><h3 className="text-2xl sm:text-3xl font-bold text-center text-pink-600 mt-2">To My Minh Thy</h3><Heart className="w-8 h-8 text-pink-500" /></div>
       </motion.div>
 
       <motion.div
@@ -88,7 +87,7 @@ export default function BirthdayCelebration() {
             >
               <div className="text-center">
                 <p className="text-purple-700 mb-2">
-                Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.
+                  Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.
                 </p>
                 <p className="text-pink-600 font-medium">I hope your birthday is full of love, magic, and everything that makes you smile 💖</p>
                 <div className="flex justify-center">
@@ -118,11 +117,68 @@ export default function BirthdayCelebration() {
       >
         <div className="text-center">
           <p className="text-lg text-purple-700 mb-4">
-          May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.
+            May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.
           </p>
           <div className="flex justify-center items-center gap-2">
             <p className="text-pink-600 font-medium">Let’s always stay like this... together, forever 🫶</p>
           </div>
+        </div>
+      </motion.div>
+
+      {/* Photo Gallery */}
+      <motion.div
+        className="w-full max-w-4xl mt-12 px-4"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.h2
+          className="text-3xl font-bold text-center text-pink-600 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Beautiful Memories 📸
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 44 }, (_, i) => ({
+            src: `/Picture/hinh${i + 1}.jpg`,
+            title: `Memory ${i + 1}`
+          })).map((photo, index) => (
+            <motion.div
+              key={index}
+              className="relative group overflow-hidden rounded-2xl shadow-lg border-4 border-pink-200 bg-white"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut"
+              }}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+            >
+              <div className="aspect-square relative">
+                <img
+                  src={photo.src}
+                  alt={photo.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-pink-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    className="text-white font-semibold text-lg"
+                  >
+                    <Heart className="w-6 h-6 inline-block fill-white" />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </div>
