@@ -10,10 +10,10 @@ function calculateTimeTogether(startDate) {
 
   if (difference > 0) {
     timeTogether = {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
+      ngày: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      giờ: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      phút: Math.floor((difference / 1000 / 60) % 60),
+      giây: Math.floor((difference / 1000) % 60),
     }
   }
 
@@ -52,7 +52,7 @@ export default function Countdown({ targetDate, onCountdownEnd }) {
           ease: "easeInOut",
         }}
       >
-        We've Been Together For💕
+        Chúng ta đã ở bên nhau💕
       </motion.h1>
 
       <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -81,7 +81,7 @@ export default function Countdown({ targetDate, onCountdownEnd }) {
         transition={{ delay: 0.5 }}
       >
         <p className="text-lg text-purple-700 mb-4">
-          Every moment with you is a beautiful memory❤️
+          Mỗi khoảnh khắc bên em đều là kỷ niệm đẹp❤️
         </p>
 
         <div className="flex justify-center space-x-2">
