@@ -14,6 +14,17 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Happy Valentine!",
   description: "Dành tặng em",
+  openGraph: {
+    title: "Happy Valentine!",
+    description: "Dành tặng em",
+    type: "website",
+    locale: "vi_VN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Happy Valentine!",
+    description: "Dành tặng em",
+  },
 }
 
 export default function RootLayout({ children }) {
